@@ -34,7 +34,7 @@ public class CourseBookingSystemApplicationTests {
 
 	@Test
 	public void canFindBookingByDate(){
-		List<Booking> found = bookingRepository.findBookingByDate("20/5/19");
+		List<Booking> found = bookingRepository.findBookingByDate("20-5-19");
 		assertEquals(1, found.get(0).getId(), 0);
 	}
 
@@ -56,6 +56,20 @@ public class CourseBookingSystemApplicationTests {
 		List<Course> found = courseRepository.findCourseByCustomer(2L);
 		assertEquals(1, found.size());
 		assertEquals("Python", found.get(0).getName());
+	}
+
+	@Test
+	public void canFindCustomersByCourseAndTown(){
+		List<Customer> found = customerRepository.findCustomersByCourseAndTown(2L);
+		assertEquals(1, found.size());
+		assertEquals("Kira", found.get(0).getName());
+	}
+
+	@Test
+	public void canFindCustomersOverCertainAgeByTownbyCourseId(){
+		List<Customer> found = customerRepository.findCustomersOverCertainAgeByTownbyCourseId(39,1L);
+		assertEquals(1, found.size());
+		assertEquals("Chika", found.get(0).getName());
 	}
 
 
